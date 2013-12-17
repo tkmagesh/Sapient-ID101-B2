@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+	function isPrime(n){
+		if (n<=2) {
+			displayMessage(n + " is prime");
+			return;
+		}
+		for(var i=2;i<=n/2;i++){
+			if (n % i == 0){
+				displayMessage(n + " is not a prime");
+				return;
+			}
+		}
+		displayMessage(n + " is prime");
+	}	
+
+	function checkPrime(){
+		var txtNumber = document.getElementById("txtNumber");
+		var number = txtNumber.value;
+		isPrime(number);
+	}
+
+	function displayMessage(msg){
+		document.getElementById("divMessage").innerHTML = msg;
+	}
+	</script>
+</head>
+<body >
+	<input type="text" name="" id="txtNumber">
+	<input type="button" value="Check Prime" id="btnCheckPrime" onClick="checkPrime();">	
+	<div id="divMessage"></div>
+	
+</body>
+</html>

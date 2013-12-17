@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<script>
+	window.onload = init;
+	function init(){
+		document.getElementById("btnCalculate").onclick = onBtnCalculateClick;
+	}
+	function onBtnCalculateClick(){
+		var txtNumber1 = document.getElementById("txtNumber1"),
+			txtNumber2 = document.getElementById("txtNumber2");
+		
+		if (txtNumber1.value == "" || txtNumber2.value == ""){
+			displayMessage("One or more text boxes are empty!!!");
+			return;
+		}
+
+		var number1 = parseInt(txtNumber1.value),
+			number2 = parseInt(txtNumber2.value),
+			operator = document.getElementById("selectOperation").value,
+			result = 0;
+		switch(operator){
+			case "+" :
+				result = number1 + number2;
+				break;
+			case "-" :
+				result = number1 - number2;
+				break;
+			case "x" :
+				result = number1 * number2;
+				break;
+			case "/" :
+				result = number1 / number2;
+				break;
+				
+		}
+		displayMessage(result);
+		
+	}
+	function displayMessage(msg){
+		document.getElementById("divResult").innerHTML = msg;
+	}
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtNumber1">
+	<select name="" id="selectOperation">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="x">x</option>
+		<option value="/">/</option>
+	</select>
+	<input type="text" name="" id="txtNumber2">
+	<input type="button" value="Calculate" id="btnCalculate">
+	<div id="divResult"></div>
+</body>
+</html>

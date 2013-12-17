@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script>
+	function isPrime(n){
+		if (n<=2) {
+			return true;
+		}
+		for(var i=2;i<=n/2;i++){
+			if (n % i == 0){
+				return false;
+			}
+		}
+		return true;
+	}	
+
+	function checkPrime(){
+		var txtStartNumber = document.getElementById("txtStartNumber");
+		var txtEndNumber = document.getElementById("txtEndNumber");
+		var startNumber = txtStartNumber.value;
+		var endNumber = txtEndNumber.value;
+		for(var i=startNumber;i<=endNumber;i++)
+			if (isPrime(i))
+				displayMessage(i);
+	}
+
+	function displayMessage(msg){
+		document.getElementById("divMessage").innerHTML += msg + ", ";
+	}
+
+	function init(){
+		var btnCheckPrime = document.getElementById("btnCheckPrime");
+		btnCheckPrime.onclick = checkPrime;
+	}
+	window.onload = init;
+	
+	</script>
+</head>
+<body >
+	<input type="text" name="" id="txtStartNumber" style="color : red">
+	<input type="text" name="" id="txtEndNumber" style="color : red">
+	<input type="button" value="Check Prime" id="btnCheckPrime" >	
+	<div id="divMessage"></div>
+	<script>
+
+	
+
+	</script>
+	
+</body>
+</html>
