@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<ul id="mainList">
+		<li><span>Groceries</span>
+			<ul>
+				<li>Item-1</li>
+				<li>Item-2</li>
+				<li>Item-3</li>
+				<li>Item-4</li>
+			</ul>
+		</li>
+		<li>
+			<span>Stationary</span>
+			<ul>
+				<li>Item-1</li>
+				<li>Item-2</li>
+				<li>Item-3</li>
+				<li>Item-4</li>
+			</ul>
+		</li>
+	</ul>
+	<script>
+	    function handleHeaderClick(e){
+		    var currentDisplayStyle = e.target.nextElementSibling.style.display;
+		    e.target.nextElementSibling.style.display = getNextDisplayStyle(currentDisplayStyle);
+		}
+		function getNextDisplayStyle(currentDisplayStyle){
+			if (currentDisplayStyle == null || currentDisplayStyle == "none"){
+		           return "block";
+		    } else {
+		           return "none";
+		    }
+		}
+		function init(){
+			var mainList = document.getElementById("mainList");
+			for(var i=0;i<mainList.children.length;i++){
+				var mainListItem = mainList.children[i];
+				mainListItem.children[0].addEventListener("click",handleHeaderClick);
+			}
+		}
+		window.addEventListener("DOMContentLoaded",init);
+	</script>
+</body>
+</html>

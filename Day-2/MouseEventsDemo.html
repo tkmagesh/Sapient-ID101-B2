@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mouse Events</title>
+	<style>
+		#divBox{
+			height : 50px;
+			width : 50px;
+			border : 2px solid blue;
+			background-color: lightblue;
+			position: absolute;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="divBox"></div>
+	<script>
+	var divBox = document.getElementById("divBox");
+	var isDragging = false;
+	divBox.onmousedown = function(){
+		isDragging = true;
+	}
+	divBox.onmouseup = function(){
+		isDragging = false;
+	};
+	divBox.onmousemove = function(e){
+		if (isDragging){
+			divBox.style.left = e.x + "px";
+			divBox.style.top = e.y + "px";
+		}
+	}
+	</script>
+</body>
+</html>
