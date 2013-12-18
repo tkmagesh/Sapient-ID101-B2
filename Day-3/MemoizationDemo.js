@@ -1,16 +1,15 @@
 function isPrime(n){
  if (typeof isPrime[n] !== "undefined") {
- 	console.log("result returned from cache");
+ 	isPrime[n].isCached = true;
  	return isPrime[n];
  }
  if (n <= 3) {
- 	isPrime[n] = true;
+ 	isPrime[n] = {number : n, isPrime : true, isCached : false};
  } else {
- 	isPrime[n] = true;
+ 	isPrime[n] = {number : n, isPrime : true, isCached : false};
  	for(var i=2;i<n-1;i++)
    		if (n % i == 0) 
-   			isPrime[n] = false;
+   			isPrime[n] = {number : n, isPrime : false, isCached : false};
  }
- console.log("freshly brewed result!!");
  return isPrime[n];
 }
