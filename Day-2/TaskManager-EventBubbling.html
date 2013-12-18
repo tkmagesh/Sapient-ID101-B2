@@ -21,21 +21,16 @@
 		
 		var taskItem = document.createElement("li");
 		taskItem.innerText = taskName;
-		taskItem.addEventListener("click",onTaskItemClick);
-
 		ulTaskList.appendChild(taskItem);
 	}
 	function init(){
 		document.getElementById("btnAddTask").addEventListener("click",onBtnAddTaskClick);
 		document.getElementById("btnRemoveCompleted").addEventListener("click",onBtnRemoveCompletedClick);
 		ulTaskList = document.getElementById("ulTaskList");
-		attachTaskItemClickHandlers();
+		ulTaskList.addEventListener("click",onTaskItemClick);	
 	}
 
-	function attachTaskItemClickHandlers(){
-		for(var i=0;i<ulTaskList.children.length;i++)
-			ulTaskList.children[i].addEventListener("click",onTaskItemClick);
-	}
+	
 
 	function onTaskItemClick(e){
 		var currentTaskItem = e.target;
@@ -44,11 +39,13 @@
 		} else {
 			currentTaskItem.classList.add("completed");
 		}
+		e.stopPropagation();
 	}
 
 	function onBtnRemoveCompletedClick(){
+		var taskItem;
 		for(var i=ulTaskList.children.length-1;i>=0;i--){
-			var taskItem = ulTaskList.children[i];
+			taskItem = ulTaskList.children[i];
 			if (taskItem.classList.contains("completed")){
 				taskItem.remove();
 			}
@@ -65,7 +62,7 @@
 	<input type="button" value="Add Task" id="btnAddTask">
 	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
 	<ul id="ulTaskList">
-		<li>Task - 1</li>
+		<li><span>Task - 1</span> <a href="">X</a></li>
 		<li>Task - 2</li>
 		<li>Task - 3</li>
 	</ul>

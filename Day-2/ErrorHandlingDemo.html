@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<script>
+	function add(x,y){
+   		if (isNaN(x) || isNaN(y)) throw new Error("One or more invalid arguments");
+   		return x + y;
+	}
+	function init(){
+		document.getElementById("btnAdd").addEventListener("click",onBtnAddClick);
+	}
+	function onBtnAddClick(){
+		var v1 = document.getElementById('txtNumber1').value;
+		var v2 = document.getElementById('txtNumber2').value;
+		try{
+			var result = add(v1,v2);
+			document.getElementById("divMessage").innerText = result;
+		} catch (e)
+		{
+			document.getElementById("divMessage").innerText = "Dumbo!! Mind the data";
+		}
+	}
+	window.addEventListener("DOMContentLoaded",init);
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtNumber1">
+	<input type="text" name="" id="txtNumber2">
+	<input type="button" value="Add" id="btnAdd">
+	<div id="divMessage"></div>
+</body>
+</html>

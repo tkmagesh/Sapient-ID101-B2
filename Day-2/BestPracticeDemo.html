@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<script>
+		window.addEventListener("DOMContentLoaded",init);
+
+		console.log(add(10,20));
+		
+		var add = function(x,y){
+			return x+y;
+		}
+		
+		var init = function(){
+
+			document.getElementById("btnIncrement").addEventListener("click",onBtnIncrementClick);
+			x = 0;			
+		}
+
+		var onBtnIncrmentClick = function(){
+			x = x + 1;
+			console.log(x);
+		}
+	</script>
+</head>
+<body>
+	<!-- 
+		1. Always declare a variable with "var" before using it.
+		2. Declare all the the variables to be used in a function at the top of the function
+		3. Always use "===" and "!==" for comparison
+		4. Always declare the function before usage
+		5. Prefer "var fn = function(){}" over "function fn(){}"
+		6. Prefer "Script" tag at the bottom of the page
+		
+	-->
+
+	<input type="button" value="Increment" id="btnIncrement">
+</body>
+</html>
