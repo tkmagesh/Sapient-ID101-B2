@@ -1,10 +1,10 @@
 var products = [
-	{id:2,name:"pen",cost:72,units:2},
-	{id:4,name:"len",cost:82,units:9},
-	{id:1,name:"den",cost:25,units:3},
-	{id:3,name:"ten",cost:76,units:4},
-	{id:8,name:"ken",cost:12,units:6},
-	{id:5,name:"hen",cost:90,units:7}
+	{id:2,name:"pen",cost:72,units:2,category:1},
+	{id:4,name:"len",cost:82,units:9,category:2},
+	{id:1,name:"den",cost:25,units:3,category:1},
+	{id:3,name:"ten",cost:76,units:9,category:1},
+	{id:8,name:"ken",cost:12,units:6,category:2},
+	{id:5,name:"hen",cost:90,units:7,category:1}
 ]
 
 function min(list,attrName){
@@ -37,4 +37,16 @@ function filter(list,isSatisfiedBy){
 
 function isACostlyProduct(p){
 	return p.cost > 50;
+}
+
+function every(list,criteriaFn){
+  for(var i=0;i<list.length;i++)
+     if (!criteriaFn(list[i])) return false;
+  return true;
+}
+
+function some(list,criteriaFn){
+  for(var i=0;i<list.length;i++)
+     if (criteriaFn(list[i])) return true;
+  return false;
 }
