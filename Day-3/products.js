@@ -50,3 +50,54 @@ function some(list,criteriaFn){
      if (criteriaFn(list[i])) return true;
   return false;
 }
+
+function groupBy(list, keySelectorFn){
+	var result = {};
+	for(var i=0;i<list.length;i++){
+		var key = keySelectorFn(list[i]);
+		if (typeof result[key] === "undefined") result[key]= [];
+		result[key].push(list[i]);
+	}
+	return result;
+}
+
+var groupedProducts = groupBy(products,function(p){ return p.category;})
+
+var costBasedGrouping = groupBy(products,function(p){
+   return p.cost > 50 ? "costly" : "cheap";
+});
+
+function countBy(list, keySelectorFn){
+	var result = {};
+	for(var i=0;i<list.length;i++){
+		var key = keySelectorFn(list[i]);
+		if (typeof result[key] === "undefined") result[key]= 0;
+		result[key]++;
+	}
+	return result;
+}
+
+function keys(obj){
+  var result = [];
+  for(var key in obj) result.push(key);
+  return result;
+}
+
+function values(obj){
+  var result = [];
+  for(var key in obj) result.push(obj[key]);
+  return result;
+}
+
+function pairs(obj){
+	var result = [];
+	for(var key in obj) result.push(new Array(key, obj[key]));
+	return result;
+}
+
+function inverse(obj){
+	var result = {};
+	for(var key in obj) result[obj[key]] = key;
+	return result;
+}
+
