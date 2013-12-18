@@ -26,3 +26,15 @@ function min(list,attrSelectorFn){
 function idSelector(p){ return p.id; }
 
 console.log(min(products,idSelector));
+
+function filter(list,isSatisfiedBy){
+	var result = [];
+	for(var i=0;i<list.length;i++)
+		if (isSatisfiedBy(list[i]))
+			result.push(list[i]);
+	return result;
+}
+
+function isACostlyProduct(p){
+	return p.cost > 50;
+}
