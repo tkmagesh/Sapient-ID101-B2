@@ -4,15 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Counter Demo</title>
 	<script>
-		var counter = 0;
-		window.addEventListener("DOMContentLoaded",init);	
-		function init(){
-			document.getElementById("btnCount").addEventListener("click",onBtnCountClick);
-		}
-		function onBtnCountClick(){
-			counter++;
-			document.getElementById("divMessage").innerHTML = counter;
-		}
+		(function(){
+			var counter = 0;
+			
+			window.addEventListener("DOMContentLoaded",init);	
+
+			function init(){
+				document.getElementById("btnCount").addEventListener("click",onBtnCountClick);
+			}
+			
+			function onBtnCountClick(){
+				counter++;
+				document.getElementById("divMessage").innerHTML = counter;
+				console.log("counter = ",counter);
+			}
+		})();
 	</script>
 </head>
 <body>
