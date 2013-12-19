@@ -12,21 +12,21 @@ function Product(id,name,units,price){
   var _name = name;
   this.name = function(){
      if (arguments.length === 0) return _name;
-     //do valnameations
+     //do validations
      _name = arguments[0];
   };
 
   var _units = units;
   this.units = function(){
      if (arguments.length === 0) return _units;
-     //do valunitsations
+     //do validations
      _units = arguments[0];
   };
 
   var _price = price;
   this.price = function(){
      if (arguments.length === 0) return _price;
-     //do valpriceations
+     //do validations
      _price = arguments[0];
   };
 
