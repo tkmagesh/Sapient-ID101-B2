@@ -16,25 +16,34 @@
 	</style>
 	<script>
 	function assert(title,fn){
-		var item = document.createElement("li");
+		var item,result;
+		item = document.createElement("li");
 		item.innerText = title;
-		var result = false;
 		try{
 			result = fn();
-		} catch (e) {
-
-		}
-		
-		if (!result){
-			item.classList.add("fail");
-		} else {
-			item.classList.add("pass");
-		}
+		} catch (e) {}
+		item.classList.add(result ? "pass" : "fail");
 		document.getElementById("ulTestResultList").appendChild(item);
 	}
 
-	function sum(x,y){
-		return x+y;
+	function sum(){
+		function parseArg(n){
+			if (typeof n === "undefined") return 0;
+			if (typeof n === "string" && !isNaN(n)) return parseInt(n,10);
+			if (typeof n === "function") return parseArg(n());
+			if (n.length){
+				var result = 0;
+				for(var i=0;i<n.length;i++){
+					result += parseArg(n[i]);
+				}
+				return result;
+			}
+			return n;
+		}
+		var result = 0;
+		for(var i=0;i<arguments.length;i++)
+			result += parseArg(arguments[i]);
+		return result;
 	}
 
 
@@ -43,14 +52,48 @@
 			return sum(10,20) === 30;
 		});
 
-		assert("Adding two numbers should yield the result", function(){
+		assert("Passing only one argument returns the same value", function(){
 			return sum(10) === 10;
 		});
 
-		assert("Testing excepions",function(){
-			throw new Error("intentional exception");
-
+		assert("Passing no arguments returns zero",function(){
+			return sum() === 0;
 		});
+
+		assert("Should be able to sum numbers in string format",function(){
+			return sum("1","2") === 3;
+		});
+
+		assert("Should be able to sum variable number of arguments",function(){
+			return sum(1,2,3,4,5) === 15;
+		});
+
+		assert("Should be able to sum functions returning numbers",function(){
+			var f1 = function(){ return 1};
+			return sum(f1) === 1;
+		});
+		
+		assert("Should be able to sum functions returning numbers in string format",function(){
+			var f1 = function(){ return "1"};
+			return sum(f1) === 1;
+		});
+
+		assert("Should be able to sum functions returning numbers in different formats",function(){
+			var f1 = function(){ return "1"};
+			var f2 = function(){ return 2};
+			return sum(f1,f2) === 3;
+		});
+
+		assert("Should be able to sum functions returning functions returning numbers in different formats",function(){
+			var f1 = function(){ return function(){return "1"}};
+			var f2 = function(){ return function(){ return 2;}};
+			return sum(f1,f2) === 3;
+		});
+
+		assert("Should be able to sum an array of numbers",function(){
+			return sum([1,2,3,4,5]) === 15;
+		});
+
 	}
 	window.addEventListener("DOMContentLoaded",init);
 
