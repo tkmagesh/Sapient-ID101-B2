@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		.fail {
+			color : red;
+			text-decoration: line-through;
+			font-style: italic;
+		}
+		.pass {
+			color : green;
+			font-weight: bold;
+		}
+	</style>
+	<script>
+	function assert(title,fn){
+		var item = document.createElement("li");
+		item.innerText = title;
+		var result = false;
+		try{
+			result = fn();
+		} catch (e) {
+
+		}
+		
+		if (!result){
+			item.classList.add("fail");
+		} else {
+			item.classList.add("pass");
+		}
+		document.getElementById("ulTestResultList").appendChild(item);
+	}
+
+	function sum(x,y){
+		return x+y;
+	}
+
+
+	function init(){
+		assert("Adding two numbers should yield the result", function(){
+			return sum(10,20) === 30;
+		});
+
+		assert("Adding two numbers should yield the result", function(){
+			return sum(10) === 10;
+		});
+
+		assert("Testing excepions",function(){
+			throw new Error("intentional exception");
+
+		});
+	}
+	window.addEventListener("DOMContentLoaded",init);
+
+	</script>
+</head>
+<body>
+	<ul id="ulTestResultList">
+		
+	</ul>
+</body>
+</html>
