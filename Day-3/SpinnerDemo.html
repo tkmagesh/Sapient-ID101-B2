@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spinner Demo (Closures)</title>
+	<script>
+	(function(){
+		function getSpinner(){
+		  var counter = 0;
+		  function upFn(){
+		     return ++counter;
+		  }
+		  function downFn(){
+		     return --counter;
+		  }
+		  var result = {
+		     up : upFn,
+		     down : downFn
+		  };
+		  return result;
+		}
+		var spinner = getSpinner();
+		function init(){
+			document.getElementById("btnUp").addEventListener("click", function(){
+				document.getElementById("spanCounter").innerHTML = spinner.up();
+			});
+			document.getElementById("btnDown").addEventListener("click", function(){
+				document.getElementById("spanCounter").innerHTML = spinner.down();
+			});
+		}
+		window.addEventListener("DOMContentLoaded",init);
+
+	})();
+	</script>
+</head>
+<body>
+	<input type="button" value="Up" id="btnUp">
+	<span id="spanCounter"></span>
+	<input type="button" value="Down" id="btnDown">
+</body>
+</html>
