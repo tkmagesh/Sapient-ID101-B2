@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculator</title>
+	<style>
+	.error {
+		border : 2px solid red;
+		background-color: lightpink;
+	}
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+
+	<script>
+	
+	$(function(){
+		var $txtNumber1 = $("#txtNumber1"),
+			$txtNumber2 = $("#txtNumber2"),
+			$btnCalculate = $("#btnCalculate");
+		
+		$("#btnCalculate").click(onBtnCalculateClick);
+
+		$("#txtNumber1,#txtNumber2").blur(function(){
+			var $this = $(this);
+			if ($this.val() === '') {
+				$this.addClass("error");
+			} else {
+				$this.removeClass('error');
+			}
+			resetCalculateButtonAccessibility();
+		});
+		function resetCalculateButtonAccessibility(){
+			$btnCalculate.prop("disabled",!($txtNumber1.val() !== "" && $txtNumber2.val() !== ""));
+		}
+		function onBtnCalculateClick(){
+		
+		
+			if ($txtNumber1.val() == "" || $txtNumber2.val() == ""){
+				displayMessage("One or more text boxes are empty!!!");
+				return;
+			}
+
+			var number1 = $txtNumber1.val(),
+				number2 = $txtNumber2.val(),
+				operator = $("#selectOperation").val(),
+				result = 0;
+			switch(operator){
+				case "+" :
+					result = number1 + number2;
+					break;
+				case "-" :
+					result = number1 - number2;
+					break;
+				case "x" :
+					result = number1 * number2;
+					break;
+				case "/" :
+					result = number1 / number2;
+					break;
+					
+			}
+			displayMessage(result);
+			
+		}
+		function displayMessage(msg){
+			$("#divResult").html(msg);
+		}
+	});
+	
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtNumber1">
+	<select name="" id="selectOperation">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="x">x</option>
+		<option value="/">/</option>
+	</select>
+	<input type="text" name="" id="txtNumber2">
+	<input type="button" value="Calculate" id="btnCalculate">
+	<div id="divResult"></div>
+</body>
+</html>

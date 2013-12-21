@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Manager</title>
+	<style>
+	.completed {
+		color :red;
+		text-decoration: line-through;
+		font-style: italic;
+	}
+	li {
+		cursor: pointer;
+	}
+
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	(function(){
+		function onBtnAddTaskClick(){
+			$("<li>")
+				.html( $("#txtTask").val())
+				.appendTo("#ulTaskList");
+		}
+		$(function(){
+			$("#btnAddTask").on("click",onBtnAddTaskClick);
+			$("#btnRemoveCompleted").click(onBtnRemoveCompletedClick);
+			$("#ulTaskList").on("click","li",onTaskItemClick);
+		});
+
+		function onTaskItemClick(e){
+			$(this).toggleClass("completed");
+		}
+
+		function onBtnRemoveCompletedClick(){
+			$("#ulTaskList > li.completed").remove();
+		}
+
+		
+	})();
+	</script>
+</head>
+<body>
+	<h1>Task Manager</h1>
+	<span>Task :</span>
+	<input type="text" name="" id="txtTask">
+	<input type="button" value="Add Task" id="btnAddTask">
+	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
+	<ul id="ulTaskList">
+		<li>Task - 1</li>
+		<li>Task - 2</li>
+		<li>Task - 3</li>
+	</ul>
+</body>
+</html>
