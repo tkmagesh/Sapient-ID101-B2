@@ -13,27 +13,61 @@
 		cursor: pointer;
 	}
 
+	#divContainer{
+		position : absolute;
+		bottom : 0px;
+		right : 0px;
+		
+	}
+
+	.message{
+		padding : 5px;
+		border : 2px solid red;
+		background-color: yellow;
+		border-radius: 3px;
+	}
+	body {
+		overflow : hidden;
+	}
+	.msgClose {
+		display : block;
+	}
 	</style>
 	<script>
 		window.myApp = {};
 	</script>
 	<script src="jquery-1.10.2.js"></script>
-	<script src="Task.js"></script>
-	<script src="TaskList.js"></script>
-
 	<script>
 	(function(){
+		function displayMessage(msg){
+			var closeAnchor = "<a class='msgClose' href='#'>close</a>"
+			$("<div class='message'>")
+				.text(msg)
+				.append(closeAnchor)
+				.hide()
+				.appendTo("#divContainer")
+				.slideDown()
+				.delay(5000)
+				.fadeOut(function(){ $(this).remove();})
+				.find(".msgClose")
+				.click(function(e){
+					e.preventDefault();
+					$(this).parent().remove();
+				});
+			
+		}
 		function onBtnAddTaskClick(){
 			$("<li>")
 				.html( $("#txtTask").val())
-				.hide()
-				.appendTo("#ulTaskList")
-				.slideDown('slow');
+				.fadeIn()
+				.appendTo("#ulTaskList");
+			displayMessage("A new task is added");
 		}
 		$(function(){
 			$("#btnAddTask").on("click",onBtnAddTaskClick);
 			$("#btnRemoveCompleted").click(onBtnRemoveCompletedClick);
 			$("#ulTaskList").on("click","li",onTaskItemClick);
+			$("#divMessage").css("bottom",-$("#divMessage").outerHeight());
 		});
 
 		function onTaskItemClick(e){
@@ -41,8 +75,11 @@
 		}
 
 		function onBtnRemoveCompletedClick(){
-			$("#ulTaskList > li.completed").fadeOut('slow',function(){ $(this).remove() });;
+			$("#ulTaskList > li.completed").fadeOut(function(){ $(this).remove();})
+			displayMessage("Zero or more completed tasks are removed");
 		}
+
+
 
 		
 	})();
@@ -57,5 +94,9 @@
 	<ul id="ulTaskList">
 		
 	</ul>
+	<div id="divContainer">
+		
+	</div>
+	
 </body>
 </html>
