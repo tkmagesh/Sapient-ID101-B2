@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="jquery-1.10.2.js"></script>
+</head>
+<body>
+	<ul id="mainList">
+		<li><span>Groceries</span>
+			<ul>
+				<li>Item-1</li>
+				<li>Item-2</li>
+				<li>Item-3</li>
+				<li>Item-4</li>
+			</ul>
+		</li>
+		<li>
+			<span>Stationary</span>
+			<ul>
+				<li>Item-1</li>
+				<li>Item-2</li>
+				<li>Item-3</li>
+				<li>Item-4</li>
+			</ul>
+		</li>
+	</ul>
+	<script>
+		$(function(){
+			$("#mainList > li > :first-child").click(function(){
+					$(this).next().slideToggle();
+	    		});
+		});
+		
+	</script>
+</body>
+</html>
