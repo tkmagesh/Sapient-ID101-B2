@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+	$(function(){
+		$("#btnGetHtml").click(function(){
+			/*$.get("serverResponse.html",function(response){
+				$("#remoteContent").html(response);
+			},"html");*/
+
+			/*$("#remoteContent").load("serverResponse.html");*/
+
+			$.ajax({
+				url : 'nonexistentfile.html',
+				contentType : 'html',
+				success : function(response){
+					$("#remoteContent").html(response);
+				},
+				error : function(){
+					if (arguments[2] === "Not Found")
+						$("#remoteContent").css("color","red").text("The remote resource is not found");
+				}
+			});
+		});
+		$("#btnGetJson").click(function(){
+			/*$.get("products.json",function(response){
+				$("#remoteContent").html(response.length + " products are loaded from the server!!");
+			},"json");*/
+
+			$.getJSON("products.json",function(response){
+				$("#remoteContent").html(response.length + " products are loaded from the server!!");
+			});
+		});
+		$("#btnGetScript").click(function(){
+			$.getScript("remoteScript.js");
+		});
+	});
+	</script>
+</head>
+<body>
+	<input type="button" value="Get Remote HTML" id="btnGetHtml"><br>
+	<input type="button" value="Get Remote JSON" id="btnGetJson"><br>
+	<input type="button" value="Get Remote Script" id="btnGetScript"><br>
+	<div id="remoteContent"></div>
+</body>
+</html>

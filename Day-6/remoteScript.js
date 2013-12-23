@@ -1,0 +1,1 @@
+alert("remote script is loaded");

@@ -1,0 +1,8 @@
+[
+	{"id":2,"name":"pen","cost":72,"units":2,"category":1},
+	{"id":4,"name":"len","cost":82,"units":9,"category":2},
+	{"id":1,"name":"den","cost":25,"units":3,"category":1},
+	{"id":3,"name":"ten","cost":76,"units":9,"category":1},
+	{"id":8,"name":"ken","cost":12,"units":6,"category":2},
+	{"id":5,"name":"hen","cost":90,"units":7,"category":1}
+]
