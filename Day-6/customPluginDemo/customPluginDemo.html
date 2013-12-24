@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Custom Plugin Demo</title>
+	<style>
+	.hint{
+		color : grey;
+		font-style: italic;
+	}
+	</style>
+	<script src="jquery-1.10.2.js"></script>
+	<script src="jquery.hint.js"></script>
+	<script>
+	$(function(){
+		
+		$("input").applyHint();			
+			
+	});
+	</script>
+</head>
+<body>
+	<input type="text" name="" id="txtName" hintText="Enter name here..">
+	<input type="text" name="" id="txtCity" hintText="Enter city here..">
+</body>
+</html>

@@ -31,7 +31,11 @@
 			},"json");*/
 
 			$.getJSON("products.json",function(response){
-				$("#remoteContent").html(response.length + " products are loaded from the server!!");
+				var $table = $("<table>");
+				for(var i=0;i<response.length;i++){
+					$table.append("<tr><td>" + response[i].name + "</td></tr>")
+				}
+				$("#remoteContent").append($table);
 			});
 		});
 		$("#btnGetScript").click(function(){

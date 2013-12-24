@@ -49,10 +49,10 @@
 				.slideDown()
 				.delay(5000)
 				.fadeOut(function(){ $(this).remove();})
-				.find(".msgClose")
+				//.find(".msgClose")
 				.click(function(e){
 					e.preventDefault();
-					$(this).parent().remove();
+					$(this).stop(true).remove();
 				});
 			
 		}
